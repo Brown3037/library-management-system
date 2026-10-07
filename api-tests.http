@@ -1,0 +1,52 @@
+@baseUrl = http://localhost:8080
+
+### API 状态
+GET {{baseUrl}}/api
+
+### 查询图书
+GET {{baseUrl}}/api/books?page=0&size=20
+
+### 按书名、作者或 ISBN 搜索
+GET {{baseUrl}}/api/books?q=Java
+
+### 新增图书
+POST {{baseUrl}}/api/books
+Content-Type: application/json
+
+{
+  "isbn": "978-0-13-235088-4",
+  "title": "Clean Code",
+  "author": "Robert C. Martin",
+  "category": "计算机",
+  "totalCopies": 3
+}
+
+### 查询读者
+GET {{baseUrl}}/api/readers
+
+### 新增读者
+POST {{baseUrl}}/api/readers
+Content-Type: application/json
+
+{
+  "name": "王五",
+  "email": "wangwu@example.com",
+  "phone": "13800000003",
+  "active": true
+}
+
+### 借书（示例数据中的图书 1、读者 1）
+POST {{baseUrl}}/api/loans
+Content-Type: application/json
+
+{
+  "bookId": 1,
+  "readerId": 1,
+  "loanDays": 14
+}
+
+### 查询未归还借阅
+GET {{baseUrl}}/api/loans?status=ACTIVE
+
+### 归还借阅（把 1 改成实际借阅 ID）
+POST {{baseUrl}}/api/loans/1/return
